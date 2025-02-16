@@ -10,6 +10,20 @@ import asyncio
 import json
 import random
 from async_timeout import timeout
+import os
+
+# 토큰 가져오기
+TOKEN = os.getenv('DISCORD_TOKEN')
+
+# Selenium 설정
+options = webdriver.ChromeOptions()
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+options.binary_location = os.getenv('CHROME_BINARY_LOCATION')
+driver = webdriver.Chrome(
+    executable_path=os.getenv('CHROME_DRIVER_PATH'),
+    options=options
+)
 
 # Bot configuration
 intents = discord.Intents.default()
@@ -254,4 +268,4 @@ async def help(interaction: discord.Interaction):
     await interaction.response.send_message(commands_list)
 
 # Bot token
-bot.run('YOUR_BOT_TOKEN')
+bot.run(TOKEN)
