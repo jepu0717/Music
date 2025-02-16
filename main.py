@@ -267,5 +267,11 @@ async def help(interaction: discord.Interaction):
 """
     await interaction.response.send_message(commands_list)
 
+@bot.tree.command(name="ping", description="봇의 응답 시간을 확인합니다")
+async def ping(interaction: discord.Interaction):
+    """봇의 지연 시간을 측정하여 응답합니다.(관리자전용)"""
+    latency = round(bot.latency * 1000)
+    await interaction.response.send_message(f"🏓 퐁! ({latency}ms)")
+
 # Bot token
 bot.run(TOKEN)
